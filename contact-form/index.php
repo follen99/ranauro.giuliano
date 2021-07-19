@@ -50,13 +50,19 @@
 		<meta name="contact" content="contact me" />
 		<meta name="description" content="This page is used to contact me" />
 		<meta name="robots" content="index, follow" />
-		 
+		<link rel="apple-touch-icon" sizes="167x167" href="https://follen99.github.io/ranauro.giuliano/resources/medium.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://follen99.github.io/ranauro.giuliano/resources/180x180.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="https://follen99.github.io/ranauro.giuliano/resources/small.png" />
+<link rel="icon" type="image/png" href="https://follen99.github.io/ranauro.giuliano/resources/favicon_medium.png" sizes="32x32" />
+<link rel="mask-icon" href="https://follen99.github.io/ranauro.giuliano/resources/site.svg" color="rgba(255,255,255,1.00)" /><link rel="icon" type="image/png" href="https://follen99.github.io/ranauro.giuliano/resources/favicon_small.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="https://follen99.github.io/ranauro.giuliano/resources/favicon_large.png" sizes="64x64" />
+ 
 
 	<!-- Meta tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
 	<title>Contact me</title>
-	<link rel="stylesheet" type="text/css" media="all" href="../rw_common/themes/Climate/consolidated.css?rwcache=648413515" />
+	<link rel="stylesheet" type="text/css" media="all" href="../rw_common/themes/Climate/consolidated.css?rwcache=648417399" />
 		
 	    
 </head>
@@ -147,7 +153,7 @@
 		</div>
 	</main>
 
-	<script type="text/javascript" src="../rw_common/themes/Climate/js/main.js?rwcache=648413515"></script>
+	<script type="text/javascript" src="../rw_common/themes/Climate/js/main.js?rwcache=648417399"></script>
 </body>
 
 </html>
