@@ -10,7 +10,7 @@
 	}
 	
 	if ( ! isset($_SESSION['formFooter'])) {
-		$_SESSION['formFooter'] = '';
+		$_SESSION['formFooter'] = ' ';
 	}
 	
 	if ( ! isset($_SESSION['form'])) {
@@ -56,7 +56,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
 	<title>Contact me</title>
-	<link rel="stylesheet" type="text/css" media="all" href="../rw_common/themes/Climate/consolidated.css?rwcache=648412265" />
+	<link rel="stylesheet" type="text/css" media="all" href="../rw_common/themes/Climate/consolidated.css?rwcache=648413515" />
 		
 	    
 </head>
@@ -74,7 +74,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto"><li class="nav-item"><a href="../" rel="" class="nav-link">Home</a></li><li class="nav-item"><a href="../photos/" rel="" class="nav-link">Gallery</a></li><li class="nav-item active"><a href="./" rel="" class="nav-link">Contacts</a></li></ul>
+                <ul class="navbar-nav ml-auto"><li class="nav-item"><a href="../" rel="" class="nav-link">Home</a></li><li class="nav-item"><a href="../photos/" rel="" class="nav-link">Gallery</a></li><li class="nav-item"><a href="../markdown/" rel="" class="nav-link">Contact Me</a></li></ul>
             </div>
         </nav>
 
@@ -140,14 +140,14 @@
 							&copy; 2021 Giuliano Ranauro
 						</div>
 
-						<ul class="navbar-nav ml-auto"><li class="nav-item"><a href="../" rel="" class="nav-link">Home</a></li><li class="nav-item"><a href="../photos/" rel="" class="nav-link">Gallery</a></li><li class="nav-item active"><a href="./" rel="" class="nav-link">Contacts</a></li></ul>
+						<ul class="navbar-nav ml-auto"><li class="nav-item"><a href="../" rel="" class="nav-link">Home</a></li><li class="nav-item"><a href="../photos/" rel="" class="nav-link">Gallery</a></li><li class="nav-item"><a href="../markdown/" rel="" class="nav-link">Contact Me</a></li></ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</main>
 
-	<script type="text/javascript" src="../rw_common/themes/Climate/js/main.js?rwcache=648412265"></script>
+	<script type="text/javascript" src="../rw_common/themes/Climate/js/main.js?rwcache=648413515"></script>
 </body>
 
 </html>
