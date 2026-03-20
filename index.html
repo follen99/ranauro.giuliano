@@ -1,85 +1,579 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giuliano Ranauro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-	<meta charset="utf-8" /> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="robots" content="index, follow" />
-		<meta name="generator" content="RapidWeaver" />
-		<link rel="apple-touch-icon" sizes="167x167" href="https://follen99.github.io/ranauro.giuliano/resources/medium.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="https://follen99.github.io/ranauro.giuliano/resources/180x180.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="https://follen99.github.io/ranauro.giuliano/resources/small.png" />
-<link rel="icon" type="image/png" href="https://follen99.github.io/ranauro.giuliano/resources/favicon_medium.png" sizes="32x32" />
-<link rel="mask-icon" href="https://follen99.github.io/ranauro.giuliano/resources/site.svg" color="rgba(255,255,255,1.00)" /><link rel="icon" type="image/png" href="https://follen99.github.io/ranauro.giuliano/resources/favicon_small.png" sizes="16x16" />
-<link rel="icon" type="image/png" href="https://follen99.github.io/ranauro.giuliano/resources/favicon_large.png" sizes="64x64" />
- 
+    :root {
+      --bg:        #080c14;
+      --surface:   rgba(255,255,255,0.04);
+      --glass:     rgba(255,255,255,0.07);
+      --glass-border: rgba(255,255,255,0.12);
+      --accent:    #4f9eff;
+      --accent2:   #a78bfa;
+      --accent3:   #34d399;
+      --text:      #e8eaf0;
+      --muted:     #6b7a99;
+      --font-head: 'Syne', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
 
-	<!-- Meta tags -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    html { scroll-behavior: smooth; }
 
-	<title>Home | Ranauro Giuliano</title>
-	<link rel="stylesheet" type="text/css" media="all" href="rw_common/themes/Climate/consolidated.css?rwcache=648417399" />
-		
-	    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-head);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── animated bg mesh ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 15% 10%, rgba(79,158,255,0.13) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 85% 80%, rgba(167,139,250,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(52,211,153,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── noise texture overlay ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: .4;
+    }
+
+    /* ── nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.1rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(8,12,20,0.6);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── hero ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 7rem 2.5rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      color: var(--accent);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp .6s .2s ease forwards;
+    }
+
+    h1.hero-name {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -.02em;
+      margin-bottom: .5rem;
+      opacity: 0;
+      animation: fadeUp .7s .35s ease forwards;
+    }
+    h1.hero-name .dim { color: var(--muted); }
+
+    .hero-role {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 2.2rem;
+      opacity: 0;
+      animation: fadeUp .7s .5s ease forwards;
+    }
+    .hero-role strong { color: var(--accent2); font-weight: 600; }
+
+    .hero-bio {
+      max-width: 520px;
+      font-family: var(--font-mono);
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 2.8rem;
+      opacity: 0;
+      animation: fadeUp .7s .65s ease forwards;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp .7s .8s ease forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .65rem 1.4rem;
+      border-radius: 8px;
+      font-family: var(--font-head);
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover { background: #7ab8ff; transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: var(--glass);
+      color: var(--text);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(8px);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 2.5rem;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--muted);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      opacity: 0;
+      animation: fadeUp .7s 1.2s ease forwards;
+    }
+    .scroll-hint::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--muted);
+    }
+
+    /* ── sections ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--accent);
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    h2.section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: 3rem;
+      line-height: 1.1;
+    }
+
+    /* ── project grid ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.6rem;
+      text-decoration: none;
+      color: var(--text);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all .25s;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .project-card:hover {
+      border-color: rgba(79,158,255,0.4);
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.07);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(79,158,255,0.15);
+    }
+
+    .project-tag {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      color: var(--accent);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      background: rgba(79,158,255,0.1);
+      padding: .25rem .6rem;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+
+    .project-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .project-desc {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .project-arrow {
+      align-self: flex-end;
+      font-size: .8rem;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: all .2s;
+    }
+    .project-card:hover .project-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ── about glass card ── */
+    .about-card {
+      background: var(--surface);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      backdrop-filter: blur(16px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+    @media (max-width: 600px) { .about-card { grid-template-columns: 1fr; } }
+
+    .about-block-title {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--accent3);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+    .about-text {
+      font-family: var(--font-mono);
+      font-size: .83rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin-top: .3rem;
+    }
+    .chip {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      padding: .3rem .7rem;
+      border-radius: 6px;
+      border: 1px solid var(--glass-border);
+      color: var(--muted);
+      background: var(--surface);
+    }
+    .chip.hi { color: var(--accent2); border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.07); }
+
+    /* ── footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2rem 2.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer p {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--muted);
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── loading indicator on project scan ── */
+    #projects-loading {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+    }
+  </style>
 </head>
-
-<!-- This page was created with RapidWeaver from Realmac Software. http://www.realmacsoftware.com -->
-
 <body>
-	<div class="hero" id="hero">
-        <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="http://giulianoranauro.com/"><img src="rw_common/images/SiteIcon.png" width="1024" height="1024" alt="Ranauro Giuliano"/>
-                <span class="navbar-title">Ranauro Giuliano</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto"><li class="nav-item active"><a href="./" rel="" class="nav-link">Home</a></li><li class="nav-item"><a href="photos/" rel="" class="nav-link">Gallery</a></li><li class="nav-item"><a href="markdown/" rel="" class="nav-link">Contact Me</a></li></ul>
-            </div>
-        </nav>
 
-		<div class="hero-content" id="hero">
-				<h1 class="hero-title">Ranauro Giuliano</h1>
-				<h2 class="hero-slogan">The enter key for your needs</h2>
-		</div>
+  <nav>
+    <a class="nav-logo" href="./"><span>gr</span> / portfolio</a>
+    <ul class="nav-links">
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#about">about</a></li>
+      <li><a href="https://github.com/follen99" target="_blank" rel="noopener">github</a></li>
+    </ul>
+  </nav>
 
-		<div class="hero-background"></div>
-	</div>
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">// computer engineer · benevento, italy</p>
+    <h1 class="hero-name">Giuliano<br/><span class="dim">Ranauro</span></h1>
+    <p class="hero-role">M.Sc. Computer Engineering @ <strong>Università del Sannio</strong></p>
+    <p class="hero-bio">
+      Building things at the intersection of software, IoT and AI.<br/>
+      LLM pipelines, mobile apps, embedded systems — publicly on GitHub.
+    </p>
+    <div class="hero-links">
+      <a class="btn btn-primary" href="#projects">View Projects</a>
+      <a class="btn btn-ghost" href="https://github.com/follen99" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.37.6.1.82-.26.82-.57v-2c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.68.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        @follen99
+      </a>
+    </div>
+    <p class="scroll-hint">scroll to explore</p>
+  </div>
 
-	<main class="content">
-		<div class="container py-5">
-			<div class="row">
-				<div class="col-sm-8 main">
-					<h1>Who am i </h1>I'm a Computer Science Engineering student passionate about software development of all kinds.<br /><br />My knowledge includes the design of relational and non-relational databases, programming languages such as <code>Java</code>, <code>Javascript</code>, <code>Python</code>, <code>C</code>, <code>C++, </code>and more.<br /><br />I have worked on projects, both at the university and for private clients, for the design of computer system.
-                </div>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label reveal">// work</p>
+    <h2 class="section-title reveal">Projects</h2>
+    <div id="projects-grid" class="projects-grid">
+      <p id="projects-loading">scanning ./projects …</p>
+    </div>
+  </section>
 
-                <div class="col-sm-4 sidebar">
-                    <h4>Translate</h4>
-                    <a href="styled/" title="Home ita">Italiano</a>
-                    
-                </div>
-			</div>
-		</div>
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label reveal">// background</p>
+    <h2 class="section-title reveal">About</h2>
+    <div class="about-card reveal">
+      <div>
+        <p class="about-block-title">bio</p>
+        <p class="about-text">
+          Computer Engineering graduate (B.Sc. Oct 2024) and M.Sc. student at
+          Università degli Studi del Sannio, expected graduation September 2026.<br/><br/>
+          I am passionate about full-stack software, IoT sensor systems and AI/ML pipelines.
+          Most of my work is open-source and lives on GitHub. When i'm not coding, you can find me on the mountains 🏔️.
+        </p>
+      </div>
+      <div>
+        <p class="about-block-title">stack</p>
+        <div class="skill-chips">
+          <span class="chip hi">Python</span>
+          <span class="chip hi">LLM / RAG</span>
+          <span class="chip hi">Swift / SwiftUI</span>
+          <span class="chip">Java</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">C / C++</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Arduino</span>
+          <span class="chip">IoT</span>
+          <span class="chip">Git</span>
+        </div>
+        <br/>
+        <p class="about-block-title">education</p>
+        <p class="about-text">
+          M.Sc. Computer Engineering — in progress<br/>
+          B.Sc. Computer Engineering — Oct 2024<br/>
+          iOS Foundation Certificate · Apple<br/>
+          Int'l Competition on Embedded Systems · East Point College, India
+        </p>
+      </div>
+    </div>
+  </section>
 
-		<div class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="footer-content text-center">
-							&copy; 2021 Giuliano Ranauro
-						</div>
+  <footer>
+    <p>© 2025 Giuliano Ranauro</p>
+    <div class="footer-links">
+      <a href="https://github.com/follen99" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:ranaurogln@gmail.com">Email</a>
+    </div>
+  </footer>
 
-						<ul class="navbar-nav ml-auto"><li class="nav-item active"><a href="./" rel="" class="nav-link">Home</a></li><li class="nav-item"><a href="photos/" rel="" class="nav-link">Gallery</a></li><li class="nav-item"><a href="markdown/" rel="" class="nav-link">Contact Me</a></li></ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
+  <script>
+    // ── Scroll reveal ──
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-	<script type="text/javascript" src="rw_common/themes/Climate/js/main.js?rwcache=648417399"></script>
+    // ── Project loader ──
+    // Projects are declared manually here — add a new object for each project folder.
+    // The 'slug' must match the folder name inside ./projects/
+    const PROJECTS = [
+      {
+        slug: "rag-chatbot-pipeline",
+        name: "RAG Chatbot Pipeline",
+        tag: "AI · LLM",
+        desc: "Automated pipeline to generate a context-aware chatbot from any website via scraping + LLM-based cleaning.",
+        accent: "#4f9eff"
+      },
+      {
+        slug: "vending-locator",
+        name: "Open And Eat",
+        tag: "Mobile · IoT",
+        desc: "Cross-platform app for locating food vending machines, real-time menu display and user profile management.",
+        accent: "#a78bfa"
+      },
+      {
+        slug: "allen-paradise",
+        name: "Allen Paradise",
+        tag: "AI · Knowledge Management",
+        desc: "Intelligent architectural knowledge management system using RAG and ADRs.",
+        accent: "#34d399"
+      },
+      {
+        slug: "deepbase",
+        name: "DeepBase",
+        tag: "AI · Knowledge Management · On Pypi",
+        desc: "A fast way to create context for LLMs.",
+        accent: "#dd6b20"
+      },
+      {
+        slug: "appunti",
+        name: "Appunti Universitari",
+        tag: "Study Materials",
+        desc: "Raccolta di appunti e materiale di studio per i corsi di Ingegneria Informatica.",
+        accent: "#8b5cf6"
+      },
+      // ── ADD MORE PROJECTS BELOW ──
+      // {
+      //   slug: "my-project",
+      //   name: "My Project",
+      //   tag: "Category",
+      //   desc: "Short description shown on the card.",
+      //   accent: "#34d399"
+      // },
+    ];
+
+    function renderProjects() {
+      const grid = document.getElementById('projects-grid');
+      grid.innerHTML = '';
+      PROJECTS.forEach((p, i) => {
+        const card = document.createElement('a');
+        card.href = `projects/${p.slug}/`;
+        card.className = 'project-card reveal';
+        card.style.animationDelay = `${i * 0.08}s`;
+        card.style.setProperty('--card-accent', p.accent);
+        card.innerHTML = `
+          <span class="project-tag" style="color:${p.accent};background:${p.accent}18">${p.tag}</span>
+          <span class="project-name">${p.name}</span>
+          <span class="project-desc">${p.desc}</span>
+          <span class="project-arrow">→</span>
+        `;
+        grid.appendChild(card);
+        // trigger reveal observer
+        revealObserver.observe(card);
+      });
+    }
+
+    renderProjects();
+  </script>
 </body>
-
 </html>
