@@ -17,11 +17,34 @@ panel empties itself as the work lands.
 
 **Tech Stack:** Python | Flask | SQLite | pdf.js | Vanilla JS/CSS (no build step, no frontend framework)
 
+## Screenshots
+
+![MarkAI document library](assets/home.png)
+Your documents live on one library screen: drag a `.md`, `.pdf` or `.docx` in, and each upload becomes
+a card that tracks whether it's linked to a source folder on disk — the link that lets exported notes
+find their way back to an agent later.
+
+![MarkAI reader with chapter outline, note popover and notes panel](assets/edit.png)
+The reader itself: a chapter outline on the left, the document in the middle, and a notes panel on the
+right. Selecting text pops up an inline note editor (`Ctrl+Enter` to save without touching the mouse),
+and the colored dots next to each outline entry are per-section review status — not reviewed, just
+read, or reviewed — that cascades down to every subsection and rolls up to the weakest status among a
+section's children. The moon icon in the topbar switches the whole reader into the dark reading theme,
+with a sepia filter also available for longer sessions.
+
 ## Highlights
 
 - Markdown, PDF and DOCX in one reader, with character-precise note anchoring in all three.
 - A real PDF reader experience: native text selection via pdf.js's own text layer, a chapter outline
-  from the PDF's bookmarks, and zoom that stays instant at any page count.
+  from the PDF's bookmarks, column-aware paragraph detection for accurate hover highlighting, and zoom
+  that stays instant at any page count.
+- Chapter outline doubles as a review tracker: mark each section not reviewed / just read / reviewed,
+  with status cascading to descendants and rolling up to ancestors — opt in to review mode without
+  losing the always-on tracking underneath.
+- Notes panel grouped by chapter, collapsible, with in-panel search and a `Ctrl+Enter` shortcut to save.
+- In-document search that takes over `Ctrl`/`Cmd`+`F`, with match count and wrap-around prev/next,
+  reusing the same anchoring machinery as notes so highlights survive PDF zoom.
+- Day/night reading themes plus a sepia filter, cross-fading smoothly across all three document types.
 - Two-way sync with a linked source folder: notes go out as JSON, an agent's status updates come back
   in automatically.
 - Fully local. Single Flask process, one SQLite file, pdf.js bundled (no CDN) — nothing about your
